@@ -4,6 +4,8 @@
 
 <h1>Turbo frame posts</h1>
 
+<%= link_to "New turbo frame post", new_turbo_frame_post_path %>
+
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
@@ -12,5 +14,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New turbo frame post", new_turbo_frame_post_path %>
