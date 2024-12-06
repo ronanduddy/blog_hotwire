@@ -2,11 +2,9 @@
 
 <h1>Pages</h1>
 
-<div id="pages">
-  <p>
-    <%= link_to "Posts", posts_path %>
-  </p>
-  <p>
-    <%= link_to "Turbo Frame Posts", turbo_frame_posts_path %>
-  </p>
-</div>
+<nav id="pages">
+  <ul>
+    <li><%= link_to "Posts", posts_path %></li>
+    <li><%= link_to "Turbo Posts", turbo_frame_posts_path %></li>
+  </ul>
+</nav>
