@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Turbo frame posts" %>
+
+<h1>Turbo frame posts</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this turbo frame post", turbo_frame_post_path(post) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New turbo frame post", new_turbo_frame_post_path %>

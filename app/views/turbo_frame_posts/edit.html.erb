@@ -1,0 +1,12 @@
+<% content_for :title, "Editing turbo frame post" %>
+
+<h1>Editing turbo frame post</h1>
+
+<%= render "form", post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "Show this turbo frame post", turbo_frame_post_path(@post) %> |
+  <%= link_to "Back to turbo frame posts", turbo_frame_posts_path %>
+</div>
