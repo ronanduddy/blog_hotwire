@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <%# ensure visits will always trigger a full reload by including %>
+    <!-- <meta name="turbo-visit-control" content="reload"> -->
+
+    <%# scope Turbo Drive to a particular root location. Turbo Drive will only load same-origin URLs that are prefixed with this path %>
+    <!-- <meta name="turbo-root" content="/posts"> -->
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,7 +31,7 @@
     <%= stylesheet_link_tag "https://cdn.simplecss.org/simple-v1.css" %>
   </head>
 
-  <body>
+  <body data-turbo="true">
     <%= yield %>
   </body>
 </html>
