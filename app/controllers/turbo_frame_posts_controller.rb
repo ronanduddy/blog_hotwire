@@ -2,21 +2,21 @@ class TurboFramePostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.all
+    @posts = TurboFramePost.all
   end
 
   def show
   end
 
   def new
-    @post = Post.new
+    @post = TurboFramePost.new
   end
 
   def edit
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = TurboFramePost.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -48,11 +48,11 @@ class TurboFramePostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params.expect(:id))
+      @post = TurboFramePost.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.expect(post: [ :title, :body ])
+      params.expect(turbo_frame_post: [ :title, :body ])
     end
 end

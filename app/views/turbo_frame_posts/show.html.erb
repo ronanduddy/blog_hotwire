@@ -1,6 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @post %>
+<%= turbo_frame_tag @post do %>
+  <%= render "turbo_frame_posts/post", post: @post %>
+<% end %>
 
 <div>
   <%= link_to "Edit this turbo frame post", edit_turbo_frame_post_path(@post) %> |
