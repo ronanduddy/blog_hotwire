@@ -12,7 +12,10 @@
   <%#= link_to "New turbo frame post", new_turbo_frame_post_path %>
 <% end %>
 
-<div id="posts">
+<!-- subscribe to super_posts stream -->
+<%= turbo_stream_from "super_posts" %>
+
+<div id="turbo_posts">
   <% @posts.each do |post| %>
     <!-- An aside: the following two are identical -->
     <!-- render partial: "quotes/quote", locals: { quote: @quote } -->
