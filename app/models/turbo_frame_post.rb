@@ -1,6 +1,6 @@
 class TurboFramePost < Post
   after_create_commit -> {
-    broadcast_prepend_to( # via a web socket rather than AJAX
+    broadcast_prepend_later_to( # via a web socket rather than AJAX
       "super_posts", # subscribers listen to this channel/stream
       partial: "turbo_frame_posts/row",
       locals: { post: self },
@@ -11,9 +11,8 @@ class TurboFramePost < Post
   # the above could be reduced to the following if conventions were followed
   # after_create_commit -> { broadcast_prepend_to "turbo_frame_posts" }
 
-
   after_update_commit -> {
-    broadcast_replace_to(
+    broadcast_replace_later_to(
       "super_posts",
       partial: "turbo_frame_posts/row",
       locals: { post: self },
@@ -22,9 +21,12 @@ class TurboFramePost < Post
   }
 
   after_destroy_commit -> {
-    broadcast_remove_to(
+    broadcast_remove_later_to(
       "super_posts",
       target: "row_turbo_frame_post_#{id}"
     )
   }
+
+  # the above three broadcasts can be written as the following if conventions were followed:
+  # broadcasts_to ->(turbo_frame_post) { "turbo_frame_posts" }, inserts_by: :prepend
 end
