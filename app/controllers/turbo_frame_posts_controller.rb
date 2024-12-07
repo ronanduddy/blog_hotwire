@@ -23,7 +23,9 @@ class TurboFramePostsController < ApplicationController
         format.html { redirect_to turbo_frame_posts_path, notice: "Turbo frame post was successfully created." }
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend("turbo_posts", partial: "row", locals: { post: @post }),
+            # can remove the above as the model is broadcasting changes
+            # otherwise as the creator of a post, we get two prepends rather than the one.
+            # turbo_stream.prepend("turbo_posts", partial: "row", locals: { post: @post }),
             turbo_stream.update(TurboFramePost.new, "")
           ]
         end
