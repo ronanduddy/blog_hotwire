@@ -1,0 +1,2 @@
+class TurboFramePost < Post
+end
