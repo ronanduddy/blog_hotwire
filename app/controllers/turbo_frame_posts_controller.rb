@@ -21,6 +21,12 @@ class TurboFramePostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to turbo_frame_posts_path, notice: "Turbo frame post was successfully created." }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.prepend("posts", partial: "row", locals: { post: @post }),
+            turbo_stream.update(TurboFramePost.new, "")
+          ]
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
       end
