@@ -12,7 +12,7 @@ class TurboFramePost < Post
   # after_create_commit -> { broadcast_prepend_to "turbo_frame_posts" }
 
   after_update_commit -> {
-    broadcast_replace_later_to(
+    broadcast_update_later_to(
       "super_posts",
       partial: "turbo_frame_posts/row",
       locals: { post: self },
