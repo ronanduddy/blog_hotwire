@@ -20,7 +20,7 @@ class TurboFramePostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to turbo_frame_post_path(@post), notice: "Turbo frame post was successfully created." }
+        format.html { redirect_to turbo_frame_posts_path, notice: "Turbo frame post was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -42,6 +42,7 @@ class TurboFramePostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to turbo_frame_posts_path, status: :see_other, notice: "Turbo frame post was successfully destroyed." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(helpers.dom_id(@post, "row")) }
     end
   end
 

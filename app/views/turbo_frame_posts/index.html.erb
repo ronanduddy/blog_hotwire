@@ -10,12 +10,15 @@
 
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render "turbo_frame_posts/post", post: post %>
-    <p>
-      <%= link_to "Show", turbo_frame_post_path(post) %>
-      <!-- Edit isn't within a turbo frame, so in order to edit inline provide turbo frame -->
-      <%= link_to "Edit", edit_turbo_frame_post_path(post), data: { turbo_frame: dom_id(post) } %>
-      <%= link_to "Delete", turbo_frame_post_path(post), method: :delete %>
-    </p>
+    <div id=<%= dom_id(post, "row") %>>
+      <%= render "turbo_frame_posts/post", post: post %>
+      <p>
+        <%= link_to "Show", turbo_frame_post_path(post) %>
+        <!-- NB: Edit isn't within a turbo frame, so in order to edit inline provide a target turbo frame -->
+        <%= link_to "Edit", edit_turbo_frame_post_path(post), data: { turbo_frame: dom_id(post) } %>
+        <%= button_to "Delete", turbo_frame_post_path(post), method: :delete, data: { turbo_confirm: "Delete?" } %>
+      </p>
+      <hr>
+    </div>
   <% end %>
 </div>
