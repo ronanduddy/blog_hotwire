@@ -1,11 +1,21 @@
 <p style="color: green"><%= notice %></p>
 
-<%= turbo_frame_tag @post do %>
-  <%= render "turbo_frame_posts/post", post: @post %>
-<% end %>
+<%= render "turbo_frame_posts/post", post: @post %>
 
 <div>
-  <%= link_to "Edit this turbo frame post", edit_turbo_frame_post_path(@post) %> |
+  <p>
+    <strong>Created At:</strong>
+    <%= @post.created_at %>
+  </p>
+
+  <p>
+    <strong>Updated At:</strong>
+    <%= @post.updated_at %>
+  </p>
+</div>
+
+<div>
+  <%= link_to "Edit", edit_turbo_frame_post_path(@post), data: { turbo_frame: dom_id(@post) } %> |
   <%= link_to "Back to turbo frame posts", turbo_frame_posts_path %>
 
   <%= button_to "Destroy this turbo frame post", turbo_frame_post_path(@post), method: :delete %>
