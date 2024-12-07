@@ -23,7 +23,7 @@ class TurboFramePostsController < ApplicationController
         format.html { redirect_to turbo_frame_posts_path, notice: "Turbo frame post was successfully created." }
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend("posts", partial: "row", locals: { post: @post }),
+            turbo_stream.prepend("turbo_posts", partial: "row", locals: { post: @post }),
             turbo_stream.update(TurboFramePost.new, "")
           ]
         end
