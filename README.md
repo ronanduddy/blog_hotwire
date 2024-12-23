@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A learning project based on https://www.hotrails.dev/turbo-rails for Hotwire.
 
-Things you may want to cover:
+It uses devise for user auth. On sign up users can create posts. Depending on
+the company they have created their account against, they will only see posts
+belonging to that company.
 
-* Ruby version
+There is are two post models `Post` and `TurboFramePost`. The latter is the main
+one. I created two modeles for the one table just to lazily separate a non-turbo
+frame approach (i.e. `Post`) from a SPA-like turbo frame approach (i.e.
+`TurboFramePost`).
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The views/frontend also subscribe to model changes via e.g.
+`turbo_stream_from "super_posts"`.
