@@ -9,8 +9,27 @@
   <%#= link_to "New turbo frame post", new_turbo_frame_post_path %>
 <% end %>
 
-<!-- subscribe to super_posts stream -->
-<%= turbo_stream_from "super_posts" %>
+<!--
+ActionCable
+
+Subscribe to "super_posts" stream, signed to the following via
+`Turbo::StreamsChannel.signed_stream_name("super_posts")`:
+
+InN1cGVyX3Bvc3RzIg==--cbf1da6d407b879286b9a1e4d28c964332e00727557720d005c6d14f5bbb869e
+
+See <turbo-cable-stream-source> element for the above called `signed-stream-name`,
+whereas `channel` contains "Turbo::StreamsChannel".
+
+`Turbo::StreamsChannel.channel_name` is "turbo:streams".
+
+The role of the stream is to route broadcastings to subscribers. If all users have
+the same stream then they will get the same broadcastings; this is a potential
+security issue if users aren't meant to see other peoples published broadcasts!
+
+It's possible to broadcast to subscribers via:
+`ActionCable.server.broadcast("super_posts", { body: "hello world"})`
+-->
+<%= turbo_stream_from @current_blogger.company, "super_posts" %>
 
 <div id="turbo_posts">
   <% @posts.each do |post| %>
