@@ -21,7 +21,7 @@ class TurboFramePost < Post
       "super_posts",
       partial: "turbo_frame_posts/row",
       locals: { post: self },
-      target: "turbo_posts"
+      target: "row_turbo_frame_post_#{id}"
     )
   }
 
