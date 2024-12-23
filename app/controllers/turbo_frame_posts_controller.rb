@@ -16,7 +16,7 @@ class TurboFramePostsController < ApplicationController
   end
 
   def create
-    @post = TurboFramePost.new(post_params)
+    @post = current_blogger.company.turbo_frame_posts.build(post_params)
 
     respond_to do |format|
       if @post.save
@@ -57,14 +57,13 @@ class TurboFramePostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = TurboFramePost.find(params.expect(:id))
+      @post = current_blogger.company.turbo_frame_posts.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
       params.expect(turbo_frame_post: [ :title, :body ])
             .merge(
-              company_id: current_blogger.company.id,
               blogger_id: current_blogger.id
             )
     end
