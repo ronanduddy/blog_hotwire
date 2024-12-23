@@ -5,6 +5,11 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, { include_blank: false } %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

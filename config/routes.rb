@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :bloggers
+  Rails.application.routes.draw do
+    devise_for :bloggers, controllers: {
+      sessions: "bloggers/sessions",
+      registrations: "bloggers/registrations"
+    }
+  end
+
   resources :pages
   resources :turbo_frame_posts
   resources :posts
