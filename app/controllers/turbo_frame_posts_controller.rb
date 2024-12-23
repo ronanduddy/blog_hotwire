@@ -2,7 +2,7 @@ class TurboFramePostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = TurboFramePost.all
+    @posts = current_blogger.company.posts
   end
 
   def show
@@ -63,5 +63,6 @@ class TurboFramePostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.expect(turbo_frame_post: [ :title, :body ])
+            .merge(company_id: current_blogger.company.id)
     end
 end
