@@ -1,4 +1,6 @@
 class TurboFramePost < Post
+  belongs_to :company
+
   after_create_commit -> {
     broadcast_prepend_later_to( # via a web socket rather than AJAX
       "super_posts", # subscribers listen to this channel/stream

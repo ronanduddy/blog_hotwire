@@ -1,0 +1,5 @@
+class AddCompanyReferenceToBloggers < ActiveRecord::Migration[8.0]
+  def change
+    add_reference :bloggers, :company, null: false, foreign_key: true
+  end
+end

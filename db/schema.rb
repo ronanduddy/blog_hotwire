@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_133501) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_163806) do
   create_table "bloggers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_133501) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_bloggers_on_company_id"
     t.index ["email"], name: "index_bloggers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_bloggers_on_reset_password_token", unique: true
   end
@@ -34,5 +36,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_133501) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_posts_on_company_id"
   end
+
+  add_foreign_key "bloggers", "companies"
+  add_foreign_key "posts", "companies"
 end
