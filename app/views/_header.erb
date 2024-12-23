@@ -9,7 +9,7 @@
     <%= content_for :title %>
   </h1>
   <p>
-    <%= current_blogger.email if blogger_signed_in? %>
+    <%= "#{current_blogger.company.name} | #{current_blogger.email}" if blogger_signed_in? %>
   </p>
 </header>
 
