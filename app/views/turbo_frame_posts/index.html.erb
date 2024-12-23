@@ -1,8 +1,5 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Turbo frame posts" %>
-
-<h1>Turbo frame posts</h1>
+<%= render "/header" %>
 
 <!-- NB: data-turbo-frame sets the target frame that will get new content based on the same frame in the response -->
 <%= link_to "New turbo frame post", new_turbo_frame_post_path, data: { turbo_frame: dom_id(TurboFramePost.new) } %>

@@ -1,0 +1,22 @@
+<header>
+  <nav>
+    <%= link_to "Home", root_path %>
+    <%= link_to "Sign Up", new_blogger_registration_path unless blogger_signed_in? %>
+    <%= link_to "Sign In", new_blogger_session_path unless current_blogger %>
+    <%= link_to "Log Out", destroy_blogger_session_path, data: { turbo_method: :delete } if blogger_signed_in? %>
+  </nav>
+  <h1>
+    <%= content_for :title %>
+  </h1>
+  <p>
+    <%= current_blogger.email if blogger_signed_in? %>
+  </p>
+</header>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>
