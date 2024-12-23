@@ -1,5 +1,8 @@
 class TurboFramePost < Post
-  belongs_to :company
+  default_scope { order(created_at: :desc) }
+
+  belongs_to :blogger, inverse_of: :turbo_frame_posts
+  belongs_to :company, inverse_of: :turbo_frame_posts
 
   after_create_commit -> {
     broadcast_prepend_later_to( # via a web socket rather than AJAX

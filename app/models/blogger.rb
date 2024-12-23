@@ -5,4 +5,5 @@ class Blogger < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
+  has_many :turbo_frame_posts, inverse_of: :blogger
 end
