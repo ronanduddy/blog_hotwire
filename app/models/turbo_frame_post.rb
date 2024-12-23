@@ -21,7 +21,7 @@ class TurboFramePost < Post
   }
 
   after_destroy_commit -> {
-    broadcast_remove_later_to(
+    broadcast_remove_to(
       "super_posts",
       target: "row_turbo_frame_post_#{id}"
     )
