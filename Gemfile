@@ -65,3 +65,5 @@ group :test do
 end
 
 gem "redis", "~> 5.3"
+
+gem "devise", "~> 4.9"
