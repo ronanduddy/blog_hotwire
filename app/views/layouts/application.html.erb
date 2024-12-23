@@ -35,6 +35,11 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
+    <%= "Signed in as #{current_blogger.email}" if blogger_signed_in? %>
+    <%= link_to "Sign Up", new_blogger_registration_path unless blogger_signed_in? %>
+    <%= link_to "Sign In", new_blogger_session_path unless current_blogger %>
+    <%= link_to "Log Out", destroy_blogger_session_path, data: { turbo_method: :delete } if blogger_signed_in? %>
+
     <%= link_to "Home", root_path %>
 
     <%= yield %>
