@@ -9,4 +9,7 @@
     <%= post.body %>
   </p>
 
+  <p>
+    <%= "#{time_ago_in_words(post.created_at)} ago | #{post.blogger.email} | #{post.model_name.human}" %>
+  </p>
 </div>

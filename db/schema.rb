@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_173224) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_175559) do
   create_table "bloggers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_173224) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "company_id", null: false
+    t.integer "company_id"
     t.integer "blogger_id", null: false
     t.index ["blogger_id"], name: "index_posts_on_blogger_id"
     t.index ["company_id"], name: "index_posts_on_company_id"

@@ -66,5 +66,8 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.expect(post: [ :title, :body ])
+            .merge(
+              blogger_id: current_blogger.id
+            )
     end
 end
