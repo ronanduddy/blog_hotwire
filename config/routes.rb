@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :bloggers
   resources :pages
   resources :turbo_frame_posts
   resources :posts
