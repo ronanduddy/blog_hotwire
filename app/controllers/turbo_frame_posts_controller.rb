@@ -22,11 +22,14 @@ class TurboFramePostsController < ApplicationController
       if @post.save
         format.html { redirect_to turbo_frame_posts_path, notice: "Turbo frame post was successfully created." }
         format.turbo_stream do
+          flash.now[:notice] = "Turbo frame post was successfully created."
+
           render turbo_stream: [
             # can remove the above as the model is broadcasting changes
             # otherwise as the creator of a post, we get two prepends rather than the one.
             # turbo_stream.prepend("turbo_posts", partial: "row", locals: { post: @post }),
-            turbo_stream.update(TurboFramePost.new, "")
+            turbo_stream.update(TurboFramePost.new, ""),
+            turbo_stream.prepend("flash", partial: "/flash")
           ]
         end
       else
@@ -39,6 +42,18 @@ class TurboFramePostsController < ApplicationController
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to turbo_frame_post_path(@post), notice: "Turbo frame post was successfully updated." }
+        format.turbo_stream do
+          flash.now[:notice] = "Turbo frame post was successfully updated."
+
+          render turbo_stream: [
+            turbo_stream.replace(
+              @post,
+              partial: "turbo_frame_posts/post",
+              locals: { post: @post }
+            ),
+            turbo_stream.prepend("flash", partial: "/flash")
+          ]
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -50,7 +65,14 @@ class TurboFramePostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to turbo_frame_posts_path, status: :see_other, notice: "Turbo frame post was successfully destroyed." }
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(helpers.dom_id(@post, "row")) }
+      format.turbo_stream do
+        flash.now[:notice] = "Turbo frame post was successfully destroyed."
+
+        render turbo_stream: [
+          turbo_stream.remove(helpers.dom_id(@post, "row")),
+          turbo_stream.prepend("flash", partial: "/flash")
+        ]
+      end
     end
   end
 
