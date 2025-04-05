@@ -4,11 +4,7 @@
 <!-- NB: data-turbo-frame sets the target frame that will get new content based on the same frame in the response -->
 <%= link_to "New turbo frame post", new_turbo_frame_post_path, data: { turbo_frame: dom_id(TurboFramePost.new) } %>
 
-<%= turbo_frame_tag TurboFramePost.new do %>
-  <% if @posts.none? %>
-    <%= render "none" %>
-  <% end %>
-<% end %>
+<%= turbo_frame_tag TurboFramePost.new %>
 
 <!--
 ActionCable
@@ -33,6 +29,8 @@ It's possible to broadcast to subscribers via:
 <%= turbo_stream_from @current_blogger.company, "super_posts" %>
 
 <div id="turbo_posts">
+  <%= render "empty_state" %>
+
   <% @posts.each do |post| %>
     <!-- An aside: the following two are identical -->
     <!-- render partial: "quotes/quote", locals: { quote: @quote } -->

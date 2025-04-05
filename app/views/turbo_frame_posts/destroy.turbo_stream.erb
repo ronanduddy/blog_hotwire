@@ -3,7 +3,8 @@
 
 <%= turbo_stream.prepend("flash", partial: "/flash") %>
 
-<% unless @current_blogger.turbo_frame_posts.exists? %>
-  <%= turbo_stream.update(TurboFramePost.new, partial: "none") %>
-<% end %>
+<%#= the following is no longer required any more now that the css only-child approach is being used %>
+<%# <% unless @current_blogger.turbo_frame_posts.exists? %>
+  <%#= turbo_stream.update(TurboFramePost.new, partial: "empty_state") %>
+<%# end %>
 

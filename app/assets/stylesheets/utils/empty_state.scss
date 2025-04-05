@@ -1,0 +1,7 @@
+.empty-state {
+  display: none;
+
+  &:only-child {
+    display: revert;
+  }
+}
