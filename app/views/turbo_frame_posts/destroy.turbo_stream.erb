@@ -1,0 +1,9 @@
+<%# commenting out the remove below as the model will broadcast its removal%>
+<%#= turbo_stream.remove(dom_id(@post, "row")) %>
+
+<%= turbo_stream.prepend("flash", partial: "/flash") %>
+
+<% unless @current_blogger.turbo_frame_posts.exists? %>
+  <%= turbo_stream.update(TurboFramePost.new, partial: "none") %>
+<% end %>
+

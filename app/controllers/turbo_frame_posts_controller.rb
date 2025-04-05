@@ -67,11 +67,6 @@ class TurboFramePostsController < ApplicationController
       format.html { redirect_to turbo_frame_posts_path, status: :see_other, notice: "Turbo frame post was successfully destroyed." }
       format.turbo_stream do
         flash.now[:notice] = "Turbo frame post was successfully destroyed."
-
-        render turbo_stream: [
-          turbo_stream.remove(helpers.dom_id(@post, "row")),
-          turbo_stream.prepend("flash", partial: "/flash")
-        ]
       end
     end
   end

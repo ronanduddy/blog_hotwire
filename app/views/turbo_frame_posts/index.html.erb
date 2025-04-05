@@ -5,8 +5,9 @@
 <%= link_to "New turbo frame post", new_turbo_frame_post_path, data: { turbo_frame: dom_id(TurboFramePost.new) } %>
 
 <%= turbo_frame_tag TurboFramePost.new do %>
-  <!-- NB: we can remove the above link and replace with this one below for a frame to replace the link itself -->
-  <%#= link_to "New turbo frame post", new_turbo_frame_post_path %>
+  <% if @posts.none? %>
+    <%= render "none" %>
+  <% end %>
 <% end %>
 
 <!--
